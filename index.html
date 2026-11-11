@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KitobHamkor — Kitob Almashish, Sotish va Onlayn Mutolaa Portali</title>
+  <meta name="description" content="Kitobxonlar uchun yagona zamonaviy ekotizim: yangi va o'qilgan kitoblarni sotish, xarid qilish, o'zaro almashish va onlayn elektron mutolaa.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Merriweather & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Asosiy stillar -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER / NAVBAR ==================== -->
+  <header class="navbar" id="mainHeader">
+    <div class="nav-container">
+      <div class="nav-brand" onclick="app.navigate('home')">
+        <div class="brand-icon">
+          <i class="fa-solid fa-book-open-reader"></i>
+        </div>
+        <div class="brand-text">
+          <span class="logo-title">Kitob<span>Hamkor</span></span>
+          <span class="logo-sub">Kitoblar olami & onlayn bozor</span>
+        </div>
+      </div>
+
+      <!-- Mobil menyu ochish tugmasi -->
+      <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Menyuni ochish">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <!-- Navigatsiya menyusi -->
+      <nav class="nav-links" id="navLinks">
+        <button class="nav-item active" data-page="home" onclick="app.navigate('home')">
+          <i class="fa-solid fa-house"></i> <span>Bosh sahifa</span>
+        </button>
+        <button class="nav-item" data-page="shop" onclick="app.navigate('shop')">
+          <i class="fa-solid fa-store"></i> <span>Kitob Do'koni</span>
+        </button>
+        <button class="nav-item" data-page="exchange" onclick="app.navigate('exchange')">
+          <i class="fa-solid fa-arrow-right-arrow-left"></i> <span>Almashish</span>
+        </button>
+        <button class="nav-item" data-page="reader" onclick="app.navigate('reader')">
+          <i class="fa-solid fa-glasses"></i> <span>Onlayn Mutolaa</span>
+        </button>
+        <button class="nav-item admin-link" id="navAdminLink" data-page="admin" onclick="app.navigate('admin')">
+          <i class="fa-solid fa-shield-halved"></i> <span>Admin Panel</span>
+        </button>
+      </nav>
+
+      <!-- Foydalanuvchi va Savat amallari -->
+      <div class="nav-actions">
+        <!-- Savatcha tugmasi -->
+        <button class="cart-btn" id="cartBtn" onclick="app.openCartModal()" title="Savatcha">
+          <div class="cart-icon-wrap">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+          <span class="cart-count-badge" id="cartBadge">0</span>
+        </button>
+
+        <!-- Auth holati -->
+        <div class="user-auth-area" id="userAuthArea">
+          <!-- script.js orqali to'ldiriladi -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== ASOSIY KONTENT ==================== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ========== 1. BOSH SAHIFA (HOME) ========== -->
+    <section class="page-section active" id="page-home">
+      <!-- Hero qismi -->
+      <div class="hero-banner">
+        <div class="hero-glow-orb hero-glow-1"></div>
+        <div class="hero-glow-orb hero-glow-2"></div>
+        <div class="hero-content">
+          <span class="hero-badge">
+            <span class="badge-dot"></span>
+            <i class="fa-solid fa-sparkles"></i> Kitobxonlar uchun #1 Ekotizim
+          </span>
+          <h1 class="hero-title">
+            Kitoblarni O'qing, Almashtiring va <span class="gradient-text">Qulay Soting</span>
+          </h1>
+          <p class="hero-desc">
+            O'zbekistondagi eng zamonaviy kitobxonlar ekotizimi. Sevimli sara asarlaringizni arzon narxlarda xarid qiling,
+            o'qilgan kitoblaringizni yangisiga almashtiring yoki brauzeringizning o'zida bepul mutolaa qiling!
+          </p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary btn-glow" onclick="app.navigate('shop')">
+              <i class="fa-solid fa-store"></i> Kitoblar Do'koni
+            </button>
+            <button class="btn btn-secondary" onclick="app.navigate('exchange')">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i> Kitob Almashish
+            </button>
+            <button class="btn btn-glass" onclick="app.navigate('reader')">
+              <i class="fa-solid fa-book-open-reader"></i> Onlayn Mutolaa
+            </button>
+          </div>
+
+          <!-- Tezkor statistika -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-icon-mini bg-indigo-subtle">
+                <i class="fa-solid fa-book"></i>
+              </div>
+              <div>
+                <span class="stat-num" id="statBooksCount">1,250+</span>
+                <span class="stat-label">Kitoblar bazasi</span>
+              </div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-icon-mini bg-amber-subtle">
+                <i class="fa-solid fa-arrows-rotate"></i>
+              </div>
+              <div>
+                <span class="stat-num" id="statExchangeCount">480+</span>
+                <span class="stat-label">Muvaffaqiyatli almashuv</span>
+              </div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-icon-mini bg-emerald-subtle">
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <div>
+                <span class="stat-num" id="statReadersCount">5,200+</span>
+                <span class="stat-label">Faol kitobxonlar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-illustration">
+          <div class="hero-card-stack">
+            <div class="floating-badge badge-top">
+              <i class="fa-solid fa-star text-amber"></i> <strong>4.9</strong> (1,500+ ijobiy baho)
+            </div>
+            
+            <div class="floating-book book-1">
+              <div class="book-spine"></div>
+              <div class="book-inner">
+                <i class="fa-solid fa-book-bookmark"></i>
+                <div class="book-info">
+                  <strong>O'tkan kunlar</strong>
+                  <small>Abdulla Qodiriy</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-book book-2">
+              <div class="book-spine"></div>
+              <div class="book-inner">
+                <i class="fa-solid fa-book"></i>
+                <div class="book-info">
+                  <strong>Atom odatlari</strong>
+                  <small>Jeyms Klir</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-badge badge-bottom">
+              <i class="fa-solid fa-shield-check text-emerald"></i> 100% Ishonchli hamjamiyat
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Xizmatlarimiz taqdimoti (Features) -->
+      <div class="section-container feature-grid-container">
+        <div class="section-header center">
+          <span class="section-sub-tag">Platforma Imkoniyatlari</span>
+          <h2>Barchasi Kitobsevarlar Uchun Yagona Joyda</h2>
+          <p>Har bir bo'lim sizga qulay, xavfsiz va maroqli kitobxonlik tajribasini berish uchun ishlab chiqilgan</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card" onclick="app.navigate('shop')">
+            <div class="feature-icon icon-indigo">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <h3>Kitob Sotish va Xarid</h3>
+            <p>Yangi va o'qilgan sara kitoblarni arzon narxlarda xarid qiling yoki javoningizdagi kitoblarni sotuvga qo'ying.</p>
+            <span class="feature-action">Do'konga o'tish <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+
+          <div class="feature-card" onclick="app.navigate('exchange')">
+            <div class="feature-icon icon-amber">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            </div>
+            <h3>Kitob Almashish (Barter)</h3>
+            <p>Ortiqcha pul sarflamasdan, o'qib bo'lingan kitoblaringizni boshqa qiziqarli asarlarga o'zaro almashtiring.</p>
+            <span class="feature-action">E'lonlarni ko'rish <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+
+          <div class="feature-card" onclick="app.navigate('reader')">
+            <div class="feature-icon icon-emerald">
+              <i class="fa-solid fa-glasses"></i>
+            </div>
+            <h3>Onlayn Mutolaa Zali</h3>
+            <p>Hech narsa yuklab olmasdan brauzeringizda qulay kitob mutolaa qiling: tungi rejim, xatcho'p va shrift sozlamalari.</p>
+            <span class="feature-action">Mutolaani boshlash <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+
+          <div class="feature-card" onclick="app.navigate('shop')">
+            <div class="feature-icon icon-cyan">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+            <h3>Tezkor & Xavfsiz Yetkazish</h3>
+            <p>O'zbekistonning barcha shahar va viloyatlariga kuryerlik orqali xavfsiz va ishonchli yetkazib berish xizmati.</p>
+            <span class="feature-action">Kitob tanlash <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tavsiya etiladigan kitoblar -->
+      <div class="section-container">
+        <div class="section-header between">
+          <div>
+            <span class="section-sub-tag">Bestsellerlar</span>
+            <h2>Tavsiya Etilgan Sara Kitoblar</h2>
+            <p>Kitobxonlar tomonidan eng ko'p mutolaa qilinayotgan va xarid qilinayotgan asarlar</p>
+          </div>
+          <button class="btn btn-outline-sm" onclick="app.navigate('shop')">
+            Barchasini ko'rish <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+        <div class="books-grid" id="homeFeaturedBooks">
+          <!-- Dinamik to'ldiriladi -->
+        </div>
+      </div>
+
+      <!-- Tezkor almashish takliflari bloki -->
+      <div class="section-container bg-subtle">
+        <div class="section-header between">
+          <div>
+            <span class="section-sub-tag">Barter Maydoni</span>
+            <h2>So'nggi Kitob Almashish E'lonlari</h2>
+            <p>O'zbekiston bo'ylab kitobxonlar tomonidan yangi joylashtirilgan faol takliflar</p>
+          </div>
+          <button class="btn btn-outline-sm" onclick="app.navigate('exchange')">
+            Barcha e'lonlar <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+        <div class="exchange-grid" id="homeExchangeList">
+          <!-- Dinamik to'ldiriladi -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 2. KITOB DO'KONI (SHOP - SOTISH / SOTIB OLISH) ========== -->
+    <section class="page-section" id="page-shop">
+      <div class="section-container">
+        <!-- Bo'lim sarlavhasi va tugmalar -->
+        <div class="section-header between page-head">
+          <div>
+            <span class="section-sub-tag">Kitob Bozor</span>
+            <h1 class="page-main-title"><i class="fa-solid fa-store text-indigo"></i> Kitoblar Do'koni</h1>
+            <p>Eng sara kitoblarni xarid qiling yoki o'z kitobingizni 1 daqiqada sotuvga joylashtiring</p>
+          </div>
+          <div class="page-head-actions">
+            <button class="btn btn-primary btn-glow" onclick="app.openSellModal()">
+              <i class="fa-solid fa-plus"></i> Yangi Kitob Sotish
+            </button>
+          </div>
+        </div>
+
+        <!-- Janrlar bo'yicha tezkor tugmalar (Category Pills) -->
+        <div class="category-pills-bar" id="shopCategoryPills">
+          <button class="cat-pill active" onclick="app.setShopGenreFilter('all', this)">
+            <i class="fa-solid fa-border-all"></i> Barcha janrlar
+          </button>
+          <button class="cat-pill" onclick="app.setShopGenreFilter('Badiiy', this)">
+            <i class="fa-solid fa-feather"></i> Badiiy adabiyot
+          </button>
+          <button class="cat-pill" onclick="app.setShopGenreFilter('Biznes & Rivojlanish', this)">
+            <i class="fa-solid fa-chart-line"></i> Biznes & Rivojlanish
+          </button>
+          <button class="cat-pill" onclick="app.setShopGenreFilter('Psixologiya', this)">
+            <i class="fa-solid fa-brain"></i> Psixologiya
+          </button>
+          <button class="cat-pill" onclick="app.setShopGenreFilter('Tarixiy', this)">
+            <i class="fa-solid fa-landmark"></i> Tarixiy
+          </button>
+          <button class="cat-pill" onclick="app.setShopGenreFilter('IT & Dasturlash', this)">
+            <i class="fa-solid fa-laptop-code"></i> IT & Texnika
+          </button>
+          <button class="cat-pill" onclick="app.setShopGenreFilter('Bolalar uchun', this)">
+            <i class="fa-solid fa-child-reaching"></i> Bolalar uchun
+          </button>
+        </div>
+
+        <!-- Filtr va Qidiruv qatori -->
+        <div class="filter-panel">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="shopSearchInput" placeholder="Kitob nomi, muallif yoki mavzu bo'yicha qidirish...">
+          </div>
+          <div class="filter-controls">
+            <select id="shopGenreFilter" class="form-select">
+              <option value="all">Barcha janrlar</option>
+              <option value="Badiiy">Badiiy adabiyot</option>
+              <option value="Biznes & Rivojlanish">Biznes & Rivojlanish</option>
+              <option value="Psixologiya">Psixologiya</option>
+              <option value="Tarixiy">Tarixiy asarlar</option>
+              <option value="Diniy-ma'rifiy">Diniy-ma'rifiy</option>
+              <option value="IT & Dasturlash">IT & Texnologiya</option>
+              <option value="Bolalar uchun">Bolalar uchun</option>
+            </select>
+
+            <select id="shopSortFilter" class="form-select">
+              <option value="newest">Yangi qo'shilganlar</option>
+              <option value="price-asc">Narxi: Arzondan qimmatga</option>
+              <option value="price-desc">Narxi: Qimmatdan arzonga</option>
+              <option value="rating">Reyting bo'yicha</option>
+            </select>
+
+            <select id="shopConditionFilter" class="form-select">
+              <option value="all">Barcha holatlar</option>
+              <option value="Yangi">Faqat yangi kitoblar</option>
+              <option value="A'lo">A'lo (o'qilgan, toza)</option>
+              <option value="Yaxshi">Yaxshi holatda</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Kitoblar ro'yxati -->
+        <div class="books-grid" id="shopBooksGrid">
+          <!-- script.js orqali generatsiya qilinadi -->
+        </div>
+
+        <div id="shopEmptyMessage" class="empty-state hidden">
+          <div class="empty-icon-wrap">
+            <i class="fa-solid fa-book-journal-whills"></i>
+          </div>
+          <h3>Kitob topilmadi</h3>
+          <p>Kiritilgan so'rov bo'yicha kitob mavjud emas. Filtrlarni tozalab qayta urinib ko'ring.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3. KITOB ALMASHISH (EXCHANGE) ========== -->
+    <section class="page-section" id="page-exchange">
+      <div class="section-container">
+        <!-- Bo'lim sarlavhasi -->
+        <div class="section-header between page-head">
+          <div>
+            <span class="section-sub-tag">Kitob Barteri</span>
+            <h1 class="page-main-title"><i class="fa-solid fa-arrow-right-arrow-left text-amber"></i> Kitob Almashish Markazi</h1>
+            <p>O'qib bo'lingan kitobingizni boshqalar bilan teng qiymatda almashtiring — kitoblar doimo harakatda bo'lsin!</p>
+          </div>
+          <div class="page-head-actions">
+            <button class="btn btn-amber btn-glow" onclick="app.openExchangeModal()">
+              <i class="fa-solid fa-handshake"></i> Almashish E'lonini Joylash
+            </button>
+          </div>
+        </div>
+
+        <!-- Almashish banner / yo'riqnoma -->
+        <div class="exchange-info-banner">
+          <div class="exchange-step">
+            <div class="step-num-badge">1</div>
+            <div>
+              <strong>E'lon qoldiring</strong>
+              <p>Mavjud kitobingiz va evaziga qaysi kitobni xohlayotganingizni yozing</p>
+            </div>
+          </div>
+          <div class="exchange-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="exchange-step">
+            <div class="step-num-badge">2</div>
+            <div>
+              <strong>Taklif yuboring yoki oling</strong>
+              <p>Qiziqqan kitobxonlar bilan to'g'ridan-to'g'ri aloqa o'rnating</p>
+            </div>
+          </div>
+          <div class="exchange-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="exchange-step">
+            <div class="step-num-badge">3</div>
+            <div>
+              <strong>Kitoblarni almashtiring</strong>
+              <p>Uchrashib yoki pochta orqali kitoblarni xavfsiz almashtiring</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtr paneli -->
+        <div class="filter-panel">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="exchangeSearchInput" placeholder="Berilayotgan yoki so'ralayotgan kitob bo'yicha qidirish...">
+          </div>
+          <div class="filter-controls">
+            <select id="exchangeCityFilter" class="form-select">
+              <option value="all">Barcha viloyat / shaharlar</option>
+              <option value="Toshkent">Toshkent shahri</option>
+              <option value="Samarqand">Samarqand</option>
+              <option value="Buxoro">Buxoro</option>
+              <option value="Farg'ona">Farg'ona</option>
+              <option value="Andijon">Andijon</option>
+              <option value="Namangan">Namangan</option>
+              <option value="Xorazm">Xorazm</option>
+              <option value="Qashqadaryo">Qashqadaryo</option>
+              <option value="Surxondaryo">Surxondaryo</option>
+              <option value="Navoiy">Navoiy</option>
+              <option value="Jizzax">Jizzax</option>
+              <option value="Sirdaryo">Sirdaryo</option>
+              <option value="Qoraqalpog'iston">Qoraqalpog'iston</option>
+            </select>
+            <select id="exchangeStatusFilter" class="form-select">
+              <option value="all">Barcha e'lonlar</option>
+              <option value="active">Faol (Almashilmagan)</option>
+              <option value="completed">Almashilgan</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Almashish e'lonlari ro'yxati -->
+        <div class="exchange-grid" id="exchangeGrid">
+          <!-- script.js orqali generatsiya qilinadi -->
+        </div>
+
+        <div id="exchangeEmptyMessage" class="empty-state hidden">
+          <div class="empty-icon-wrap">
+            <i class="fa-solid fa-handshake-slash"></i>
+          </div>
+          <h3>E'lonlar topilmadi</h3>
+          <p>Hozircha bunday e'lon yo'q yoki qidiruv so'rovi mos kelmadi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 4. ONLAYN MUTOLAA (ONLINE READER) ========== -->
+    <section class="page-section" id="page-reader">
+      <div class="section-container">
+        <!-- Bo'lim sarlavhasi -->
+        <div class="section-header between page-head">
+          <div>
+            <span class="section-sub-tag">Elektron Kutubxona</span>
+            <h1 class="page-main-title"><i class="fa-solid fa-glasses text-emerald"></i> Onlayn Mutolaa Zali</h1>
+            <p>Yuklab olmasdan, brauzerning o'zida qulay sharoitda kitob mutolaa qiling</p>
+          </div>
+          <div class="page-head-actions">
+            <span class="reader-hint"><i class="fa-solid fa-circle-check"></i> O'qilgan sahifalar avtomatik saqlanadi</span>
+          </div>
+        </div>
+
+        <!-- Onlayn o'qish uchun mavjud kitoblar vitrinasi -->
+        <div class="reader-library-grid" id="readerLibraryGrid">
+          <!-- script.js orqali generatsiya qilinadi -->
+        </div>
+
+        <!-- ONLAYN READER TO'LIQ O'QISH INTERFEYSI -->
+        <div class="reader-workspace" id="readerWorkspace" style="display: none;">
+          <!-- Reader yuqori paneli (Control bar) -->
+          <div class="reader-topbar">
+            <div class="reader-book-meta">
+              <button class="btn-icon" onclick="app.closeReader()" title="Kutubxonaga qaytish">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <div>
+                <h4 id="readerCurrentBookTitle">Kitob Nomi</h4>
+                <span id="readerCurrentAuthor">Muallif</span>
+              </div>
+            </div>
+
+            <!-- O'qish sozlamalari -->
+            <div class="reader-settings-controls">
+              <!-- Boblar menyusi -->
+              <select id="readerChapterSelect" class="form-select-sm" onchange="app.changeChapter(this.value)">
+                <!-- Dinamik boblar -->
+              </select>
+
+              <!-- Mavzu: Oq / Sepia / Tungi -->
+              <div class="theme-switchers">
+                <button class="theme-btn theme-light active" title="Kunduzgi rejim" onclick="app.setReaderTheme('light')">A</button>
+                <button class="theme-btn theme-sepia" title="Sepiya (mayin qog'oz)" onclick="app.setReaderTheme('sepia')">A</button>
+                <button class="theme-btn theme-dark" title="Tungi rejim" onclick="app.setReaderTheme('dark')">A</button>
+              </div>
+
+              <!-- Shrift o'lchami -->
+              <div class="font-size-controls">
+                <button class="btn-icon-sm" onclick="app.adjustFontSize(-1)" title="Kichikroq shrift"><i class="fa-solid fa-minus"></i></button>
+                <span id="fontSizeDisplay">18px</span>
+                <button class="btn-icon-sm" onclick="app.adjustFontSize(1)" title="Kattaroq shrift"><i class="fa-solid fa-plus"></i></button>
+              </div>
+
+              <!-- Shrift turi (Serif / Sans) -->
+              <button class="btn-icon-sm" id="fontFamilyToggle" onclick="app.toggleFontFamily()" title="Shrift turini almashtirish">
+                <i class="fa-solid fa-font"></i>
+              </button>
+
+              <!-- Xatcho'p (Bookmark) qo'yish -->
+              <button class="btn-bookmark" id="readerBookmarkBtn" onclick="app.toggleBookmark()" title="Xatcho'p qo'yish">
+                <i class="fa-regular fa-bookmark"></i>
+              </button>
+
+              <!-- Chiqish -->
+              <button class="btn btn-secondary-sm" onclick="app.closeReader()">
+                <i class="fa-solid fa-xmark"></i> Yopish
+              </button>
+            </div>
+          </div>
+
+          <!-- Kitob matni o'qish qismi -->
+          <div class="reader-viewport" id="readerViewport">
+            <div class="reader-text-container" id="readerTextContent">
+              <!-- script.js orqali bob matni joylanadi -->
+            </div>
+          </div>
+
+          <!-- Reader quyi paneli (Navigatsiya va progress) -->
+          <div class="reader-bottombar">
+            <button class="btn btn-outline-sm" id="prevChapterBtn" onclick="app.navigateChapter(-1)">
+              <i class="fa-solid fa-chevron-left"></i> Oldingi bob
+            </button>
+            <div class="reading-progress-info">
+              <span id="readingProgressText">1 / 5 bob</span>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="readingProgressBar" style="width: 20%;"></div>
+              </div>
+            </div>
+            <button class="btn btn-outline-sm" id="nextChapterBtn" onclick="app.navigateChapter(1)">
+              Keyingi bob <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 5. ADMIN PANEL ========== -->
+    <section class="page-section" id="page-admin">
+      <div class="section-container">
+        <!-- Admin boshqaruv sarlavhasi -->
+        <div class="section-header between page-head">
+          <div>
+            <span class="section-sub-tag">Boshqaruv Markazi</span>
+            <h1 class="page-main-title"><i class="fa-solid fa-shield-halved text-indigo"></i> Admin Boshqaruv Paneli</h1>
+            <p>Platformadagi kitoblar, e'lonlar, do'kon buyurtmalari va foydalanuvchilarni to'liq nazorat qilish</p>
+          </div>
+          <div class="page-head-actions">
+            <span class="badge badge-primary"><i class="fa-solid fa-crown"></i> Super Administrator</span>
+          </div>
+        </div>
+
+        <!-- Tezkor Statistika Kartalari -->
+        <div class="admin-stats-grid">
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrapper bg-indigo-light">
+              <i class="fa-solid fa-book text-indigo"></i>
+            </div>
+            <div>
+              <span class="stat-card-label">Sotuvdagi Kitoblar</span>
+              <h3 class="stat-card-value" id="adminTotalBooks">0</h3>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrapper bg-amber-light">
+              <i class="fa-solid fa-arrow-right-arrow-left text-amber"></i>
+            </div>
+            <div>
+              <span class="stat-card-label">Almashish E'lonlari</span>
+              <h3 class="stat-card-value" id="adminTotalExchanges">0</h3>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrapper bg-emerald-light">
+              <i class="fa-solid fa-bag-shopping text-emerald"></i>
+            </div>
+            <div>
+              <span class="stat-card-label">Do'kon Buyurtmalari</span>
+              <h3 class="stat-card-value" id="adminTotalOrders">0</h3>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrapper bg-cyan-light">
+              <i class="fa-solid fa-users text-cyan"></i>
+            </div>
+            <div>
+              <span class="stat-card-label">Foydalanuvchilar</span>
+              <h3 class="stat-card-value" id="adminTotalUsers">0</h3>
+            </div>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrapper bg-rose-light">
+              <i class="fa-solid fa-coins text-rose"></i>
+            </div>
+            <div>
+              <span class="stat-card-label">Jami Savdo Tushumi</span>
+              <h3 class="stat-card-value" id="adminTotalRevenue">0 so'm</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tabs (Bo'limlar) -->
+        <div class="admin-tabs-nav">
+          <button class="admin-tab-btn active" onclick="app.switchAdminTab('books')">
+            <i class="fa-solid fa-book"></i> Do'kon Kitoblari
+          </button>
+          <button class="admin-tab-btn" onclick="app.switchAdminTab('exchanges')">
+            <i class="fa-solid fa-handshake"></i> Almashuvlar
+          </button>
+          <button class="admin-tab-btn" onclick="app.switchAdminTab('orders')">
+            <i class="fa-solid fa-truck-fast"></i> Xarid Buyurtmalari
+          </button>
+          <button class="admin-tab-btn" onclick="app.switchAdminTab('users')">
+            <i class="fa-solid fa-users"></i> Foydalanuvchilar
+          </button>
+          <button class="admin-tab-btn" onclick="app.switchAdminTab('settings')">
+            <i class="fa-solid fa-shield-halved"></i> Ega Sozlamalari (Login/Parol)
+          </button>
+        </div>
+
+        <!-- Admin Tab 1: Do'kon Kitoblari -->
+        <div class="admin-tab-pane active" id="admin-tab-books">
+          <div class="tab-pane-header">
+            <h3>Do'kondagi Kitoblar Ro'yxati</h3>
+            <button class="btn btn-primary-sm" onclick="app.openSellModal()">
+              <i class="fa-solid fa-plus"></i> Yangi Kitob Qo'shish
+            </button>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Rasm</th>
+                  <th>Nomi & Muallif</th>
+                  <th>Janr</th>
+                  <th>Narxi</th>
+                  <th>Holati</th>
+                  <th>Sotuvchi</th>
+                  <th>Amallar</th>
+                </tr>
+              </thead>
+              <tbody id="adminBooksTableBody">
+                <!-- script.js orqali to'ldiriladi -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Tab 2: Almashuvlar -->
+        <div class="admin-tab-pane" id="admin-tab-exchanges">
+          <div class="tab-pane-header">
+            <h3>Kitob Almashish E'lonlari</h3>
+            <button class="btn btn-amber-sm" onclick="app.openExchangeModal()">
+              <i class="fa-solid fa-plus"></i> E'lon qo'shish
+            </button>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Mavjud Kitob</th>
+                  <th>Evaziga so'ralmoqda</th>
+                  <th>Shahar</th>
+                  <th>E'lon beruvchi</th>
+                  <th>Holat</th>
+                  <th>Amallar</th>
+                </tr>
+              </thead>
+              <tbody id="adminExchangesTableBody">
+                <!-- script.js orqali to'ldiriladi -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Tab 3: Do'kon Xaridlari -->
+        <div class="admin-tab-pane" id="admin-tab-orders">
+          <div class="tab-pane-header">
+            <h3>Do'kondan Xarid Qilingan Buyurtmalar</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Buyurtma ID</th>
+                  <th>Mijoz</th>
+                  <th>Telefon & Manzil</th>
+                  <th>Kitoblar soni</th>
+                  <th>Jami Summa</th>
+                  <th>Holat</th>
+                  <th>Amal</th>
+                </tr>
+              </thead>
+              <tbody id="adminOrdersTableBody">
+                <!-- script.js orqali to'ldiriladi -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Tab 4: Foydalanuvchilar -->
+        <div class="admin-tab-pane" id="admin-tab-users">
+          <div class="tab-pane-header">
+            <h3>Ro'yxatdan O'tgan Foydalanuvchilar</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Foydalanuvchi</th>
+                  <th>Email / Telefon</th>
+                  <th>Roli</th>
+                  <th>Ro'yxatdan o'tgan sana</th>
+                  <th>Status</th>
+                  <th>Amal</th>
+                </tr>
+              </thead>
+              <tbody id="adminUsersTableBody">
+                <!-- script.js orqali to'ldiriladi -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Tab 5: Ega Sozlamalari (Login & Parol) -->
+        <div class="admin-tab-pane" id="admin-tab-settings">
+          <div class="tab-pane-header">
+            <h3>SuperAdmin Kirish va Xavfsizlik Sozlamalari</h3>
+          </div>
+          <div class="admin-settings-card">
+            <div class="admin-auth-notice mb-4">
+              <i class="fa-solid fa-crown text-amber fa-2x"></i>
+              <div>
+                <strong>Dastur Egasi Maxsus Kabineti</strong>
+                <p>Ushbu bo'lim faqat siz uchun. Login va parolingizni xohlagan vaqtda o'zgartirishingiz mumkin.</p>
+              </div>
+            </div>
+            <form id="adminSettingsForm" onsubmit="app.handleAdminSettingsSubmit(event)" style="max-width: 650px;">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="settingAdminName">Administrator Ismi: *</label>
+                  <input type="text" id="settingAdminName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label for="settingAdminLogin">Admin Login / Email: *</label>
+                  <input type="text" id="settingAdminLogin" class="form-input" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="settingAdminNewPass">Yangi Maxfiy Parol: *</label>
+                  <div class="input-with-icon">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" id="settingAdminNewPass" class="form-input" placeholder="Yangi parolni kiriting" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="settingAdminConfirmPass">Yangi Parolni Tasdiqlang: *</label>
+                  <div class="input-with-icon">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="settingAdminConfirmPass" class="form-input" placeholder="Parolni qayta kiriting" required>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-glow">
+                <i class="fa-solid fa-floppy-disk"></i> Yangi Login va Parolni Saqlash
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 6. FOYDALANUVCHI PROFILI (PROFILE) ========== -->
+    <section class="page-section" id="page-profile">
+      <div class="section-container">
+        <div class="profile-header-card">
+          <div class="profile-avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="profile-details">
+            <h2 id="profileUserName">Foydalanuvchi Ismi</h2>
+            <p id="profileUserEmail">email@example.com</p>
+            <div class="profile-role-tag" id="profileRoleBadge">Oddiy Foydalanuvchi</div>
+          </div>
+          <div class="profile-actions">
+            <button class="btn btn-outline" onclick="app.logout()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Tizimdan Chiqish
+            </button>
+          </div>
+        </div>
+
+        <!-- Profil bo'limlari -->
+        <div class="profile-tabs">
+          <button class="profile-tab-btn active" onclick="app.switchProfileTab('my-books')">
+            <i class="fa-solid fa-book"></i> Mening Sotuvdagi Kitoblarim
+          </button>
+          <button class="profile-tab-btn" onclick="app.switchProfileTab('my-exchanges')">
+            <i class="fa-solid fa-handshake"></i> Mening Almashish E'lonlarim
+          </button>
+          <button class="profile-tab-btn" onclick="app.switchProfileTab('my-orders')">
+            <i class="fa-solid fa-bag-shopping"></i> Mening Xaridlarim
+          </button>
+          <button class="profile-tab-btn" onclick="app.switchProfileTab('my-settings')">
+            <i class="fa-solid fa-user-gear"></i> Profil Sozlamalari
+          </button>
+        </div>
+
+        <div class="profile-tab-content">
+          <div class="profile-pane active" id="profile-tab-my-books">
+            <div class="between mb-3">
+              <h3>Sotuvga qo'ygan kitoblaringiz</h3>
+              <button class="btn btn-primary-sm" onclick="app.openSellModal()">+ Yangi kitob qo'shish</button>
+            </div>
+            <div class="books-grid" id="profileBooksGrid"></div>
+          </div>
+
+          <div class="profile-pane" id="profile-tab-my-exchanges">
+            <div class="between mb-3">
+              <h3>Almashish uchun e'lonlaringiz</h3>
+              <button class="btn btn-amber-sm" onclick="app.openExchangeModal()">+ Yangi e'lon berish</button>
+            </div>
+            <div class="exchange-grid" id="profileExchangesGrid"></div>
+          </div>
+
+          <div class="profile-pane" id="profile-tab-my-orders">
+            <div class="between mb-3">
+              <h3>Do'kondan sotib olgan kitoblaringiz</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Buyurtma ID</th>
+                    <th>Sana</th>
+                    <th>Kitoblar</th>
+                    <th>Summa</th>
+                    <th>Holati</th>
+                    <th>Chek</th>
+                  </tr>
+                </thead>
+                <tbody id="profileOrdersTable"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="profile-pane" id="profile-tab-my-settings">
+            <div class="between mb-3">
+              <h3>Shaxsiy ma'lumotlarni tahrirlash</h3>
+            </div>
+            <form id="profileSettingsForm" onsubmit="app.handleProfileSettingsSubmit(event)" style="max-width: 600px;">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="profEditName">Ism-familiyangiz: *</label>
+                  <input type="text" id="profEditName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label for="profEditPhone">Telefon raqamingiz: *</label>
+                  <input type="tel" id="profEditPhone" class="form-input" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="profEditCity">Shahar / Viloyat: *</label>
+                  <input type="text" id="profEditCity" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label for="profEditPass">Yangi parol (ixtiyoriy):</label>
+                  <input type="password" id="profEditPass" class="form-input" placeholder="O'zgartirish uchun kiriting">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-glow">
+                <i class="fa-solid fa-floppy-disk"></i> Ma'lumotlarni Saqlash
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-col brand-col">
+        <div class="nav-brand">
+          <div class="brand-icon">
+            <i class="fa-solid fa-book-open-reader"></i>
+          </div>
+          <div class="brand-text">
+            <span class="logo-title">Kitob<span>Hamkor</span></span>
+          </div>
+        </div>
+        <p class="footer-about">
+          O'zbekistondagi barcha kitobsevarlar va noshirlar uchun zamonaviy qulay ekotizim. Kitob xarid qiling, tengdoshlaringiz bilan almashing va onlayn mutolaa qiling!
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-link" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" class="social-link" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Bo'limlar</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="app.navigate('shop')">Kitob Do'koni</a></li>
+          <li><a href="javascript:void(0)" onclick="app.navigate('exchange')">Kitob Almashish</a></li>
+          <li><a href="javascript:void(0)" onclick="app.navigate('reader')">Onlayn Mutolaa</a></li>
+          <li><a href="javascript:void(0)" onclick="app.navigate('home')">Bosh sahifa</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Xizmat va Yordam</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="app.openAuthModal('user')">Foydalanuvchi Kirishi</a></li>
+          <li><a href="javascript:void(0)" onclick="app.openAuthModal('admin')">Admin Paneli Kirishi</a></li>
+          <li><a href="javascript:void(0)">Qoidalar va Maxfiylik</a></li>
+          <li><a href="javascript:void(0)">Yetkazib berish shartlari</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Bog'lanish</h4>
+        <ul class="footer-contacts">
+          <li><i class="fa-solid fa-phone"></i> +998 71 200 00 00</li>
+          <li><i class="fa-solid fa-envelope"></i> info@kitobhamkor.uz</li>
+          <li><i class="fa-solid fa-location-dot"></i> Toshkent sh., Chilonzor tumani</li>
+          <li><i class="fa-solid fa-clock"></i> 24/7 Qo'llab-quvvatlash</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>&copy; 2026 KitobHamkor. Barcha huquqlar himoyalangan.</p>
+        <div class="demo-hints">
+          <span class="demo-tag"><i class="fa-solid fa-crown text-amber"></i> Ega (Admin): <code>admin</code> (parol: <code>admin123</code>)</span>
+          <span class="demo-tag"><i class="fa-solid fa-user-plus text-emerald"></i> Boshqalar: "Ro'yxatdan o'tish" orqali hisob ochadi</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL OYNALAR ==================== -->
+
+  <!-- 1. LOGIN / RO'YXATDAN O'TISH / ADMIN MODALI -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-card auth-modal-card">
+      <button class="modal-close-btn" onclick="app.closeAuthModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Kirish turi tanlagichi (Kirish, Ro'yxatdan o'tish, Admin) -->
+      <div class="auth-role-tabs auth-role-tabs-3">
+        <button class="auth-role-btn active" id="authTabLogin" onclick="app.setAuthView('login')">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Kirish
+        </button>
+        <button class="auth-role-btn" id="authTabRegister" onclick="app.setAuthView('register')">
+          <i class="fa-solid fa-user-plus"></i> Ro'yxatdan o'tish
+        </button>
+        <button class="auth-role-btn auth-role-admin" id="authTabAdmin" onclick="app.setAuthView('admin')">
+          <i class="fa-solid fa-shield-halved"></i> Ega / Admin
+        </button>
+      </div>
+
+      <!-- Auth sarlavhasi -->
+      <div class="auth-modal-header">
+        <h3 id="authTitle">Foydalanuvchi Hisobiga Kirish</h3>
+        <p id="authSubtitle">Buyurtmalar va mutolaa xatcho'plaringizni boshqaring</p>
+      </div>
+
+      <!-- 1-VIEW: KIRISH FORMASI (FOYDALANUVCHILAR UCHUN) -->
+      <div id="authViewLogin" class="auth-view-pane active">
+        <form id="loginForm" onsubmit="app.handleLoginSubmit(event)">
+          <div class="form-group">
+            <label for="loginEmail">Email yoki Login: *</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-envelope"></i>
+              <input type="text" id="loginEmail" class="form-input" placeholder="foydalanuvchi@kitob.uz yoki login" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Parol: *</label>
+            <div class="input-with-icon password-toggle-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="loginPassword" class="form-input" placeholder="Parolingizni kiriting" required>
+              <button type="button" class="password-toggle-btn" onclick="app.togglePasswordVisibility('loginPassword', this)">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-glow">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Tizimga Kirish
+          </button>
+        </form>
+
+        <div class="quick-demo-logins mt-3">
+          <span>Tezkor sinov:</span>
+          <button type="button" class="btn btn-outline-sm btn-block" onclick="app.fillDemoCredentials('user')">
+            <i class="fa-solid fa-user"></i> Namuna Foydalanuvchi bilan kirish
+          </button>
+        </div>
+
+        <div class="auth-switch-box">
+          <p>Profilingiz yo'qmi? <a href="javascript:void(0)" onclick="app.setAuthView('register')">Hoziroq ro'yxatdan o'ting</a></p>
+        </div>
+      </div>
+
+      <!-- 2-VIEW: RO'YXATDAN O'TISH FORMASI (BOSHQALAR UCHUN) -->
+      <div id="authViewRegister" class="auth-view-pane hidden">
+        <form id="registerForm" onsubmit="app.handleRegisterSubmit(event)">
+          <div class="form-group">
+            <label for="regName">Ism-familiyangiz: *</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" id="regName" class="form-input" placeholder="Rustam Olimov" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="regPhone">Telefon raqam: *</label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" id="regPhone" class="form-input" placeholder="+998 90 123 45 67" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="regCity">Shahar / Viloyat: *</label>
+              <select id="regCity" class="form-input" required>
+                <option value="Toshkent">Toshkent shahri</option>
+                <option value="Samarqand">Samarqand</option>
+                <option value="Buxoro">Buxoro</option>
+                <option value="Farg'ona">Farg'ona</option>
+                <option value="Andijon">Andijon</option>
+                <option value="Namangan">Namangan</option>
+                <option value="Qashqadaryo">Qashqadaryo</option>
+                <option value="Surxondaryo">Surxondaryo</option>
+                <option value="Xorazm">Xorazm</option>
+                <option value="Navoiy">Navoiy</option>
+                <option value="Jizzax">Jizzax</option>
+                <option value="Sirdaryo">Sirdaryo</option>
+                <option value="Qoraqalpog'iston">Qoraqalpog'iston</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail">Email yoki Login (foydalanuvchi nomi): *</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-at"></i>
+              <input type="text" id="regEmail" class="form-input" placeholder="foydalanuvchi@mail.uz yoki login" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="regPassword">Parol yarating: *</label>
+              <div class="input-with-icon password-toggle-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="regPassword" class="form-input" placeholder="Kamida 4 ta belgi" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="regPasswordConfirm">Parolni tasdiqlang: *</label>
+              <div class="input-with-icon password-toggle-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="regPasswordConfirm" class="form-input" placeholder="Qayta kiriting" required>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-glow">
+            <i class="fa-solid fa-user-plus"></i> Yangi Hisob Ochish (Ro'yxatdan o'tish)
+          </button>
+        </form>
+
+        <div class="auth-switch-box">
+          <p>Profilingiz bormi? <a href="javascript:void(0)" onclick="app.setAuthView('login')">Tizimga kiring</a></p>
+        </div>
+      </div>
+
+      <!-- 3-VIEW: ADMIN / EGA KIRISHI (FAQAT DASTUR EGASI UCHUN) -->
+      <div id="authViewAdmin" class="auth-view-pane hidden">
+        <div class="admin-auth-notice">
+          <i class="fa-solid fa-crown text-amber fa-2x"></i>
+          <div>
+            <strong>Faqat Dastur Egasi Uchun</strong>
+            <p>Admin login: <code>admin</code> | Parol: <code>admin123</code></p>
+          </div>
+        </div>
+
+        <form id="adminLoginForm" onsubmit="app.handleAdminSubmit(event)">
+          <div class="form-group">
+            <label for="adminLoginInput">SuperAdmin Login: *</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+              <input type="text" id="adminLoginInput" class="form-input" value="admin" placeholder="admin" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="adminPasswordInput">SuperAdmin Paroli: *</label>
+            <div class="input-with-icon password-toggle-wrap">
+              <i class="fa-solid fa-key"></i>
+              <input type="password" id="adminPasswordInput" class="form-input" placeholder="Parolni kiriting" required>
+              <button type="button" class="password-toggle-btn" onclick="app.togglePasswordVisibility('adminPasswordInput', this)">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-glow" style="background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);">
+            <i class="fa-solid fa-shield-halved"></i> Administrator Sifatida Kirish
+          </button>
+        </form>
+
+        <div class="quick-demo-logins mt-3">
+          <span>Tezkor kirish:</span>
+          <button type="button" class="btn btn-outline-sm btn-block btn-danger-soft" onclick="app.fillDemoCredentials('admin')">
+            <i class="fa-solid fa-shield-halved"></i> 1-klikda SuperAdmin bo'lib kirish
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. KITOB SOTISH MODALI -->
+  <div class="modal-overlay" id="sellModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="app.closeSellModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-header">
+        <div class="modal-header-icon bg-indigo-subtle">
+          <i class="fa-solid fa-book-medical text-indigo"></i>
+        </div>
+        <div>
+          <h3>Kitobni Sotuvga Qo'yish</h3>
+          <p class="modal-sub">Kitob ma'lumotlarini kiriting va darhol xaridorlarni toping</p>
+        </div>
+      </div>
+      <form id="sellBookForm" onsubmit="app.handleSellBookSubmit(event)">
+        <div class="form-group">
+          <label for="sellTitle">Kitob Nomi: *</label>
+          <input type="text" id="sellTitle" class="form-input" placeholder="Masalan: Ufq romani" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sellAuthor">Muallif: *</label>
+            <input type="text" id="sellAuthor" class="form-input" placeholder="O'tkir Hoshimov" required>
+          </div>
+          <div class="form-group">
+            <label for="sellGenre">Janr: *</label>
+            <select id="sellGenre" class="form-input" required>
+              <option value="Badiiy">Badiiy adabiyot</option>
+              <option value="Biznes & Rivojlanish">Biznes & Rivojlanish</option>
+              <option value="Psixologiya">Psixologiya</option>
+              <option value="Tarixiy">Tarixiy</option>
+              <option value="Diniy-ma'rifiy">Diniy-ma'rifiy</option>
+              <option value="IT & Dasturlash">IT & Dasturlash</option>
+              <option value="Bolalar uchun">Bolalar uchun</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sellPrice">Narxi (so'm): *</label>
+            <input type="number" id="sellPrice" class="form-input" placeholder="45000" min="0" step="1000" required>
+          </div>
+          <div class="form-group">
+            <label for="sellCondition">Kitob Holati: *</label>
+            <select id="sellCondition" class="form-input" required>
+              <option value="Yangi">Yangi (ishlatilmagan)</option>
+              <option value="A'lo">A'lo (o'qilgan, toza)</option>
+              <option value="Yaxshi">Yaxshi holatda</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sellCity">Shahar / Viloyat: *</label>
+            <select id="sellCity" class="form-input" required>
+              <option value="Toshkent">Toshkent shahri</option>
+              <option value="Samarqand">Samarqand</option>
+              <option value="Buxoro">Buxoro</option>
+              <option value="Farg'ona">Farg'ona</option>
+              <option value="Andijon">Andijon</option>
+              <option value="Namangan">Namangan</option>
+              <option value="Boshqa">Boshqa hudud</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sellPhone">Telefon raqam: *</label>
+            <input type="tel" id="sellPhone" class="form-input" placeholder="+998 90 123 45 67" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sellImageUrl">Muqova rasmi (URL yoki fayl):</label>
+          <input type="url" id="sellImageUrl" class="form-input" placeholder="https://rasm-manzili... (ixtiyoriy)">
+          <div class="file-drop-area mt-2">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span id="sellImageFileName">Yoki rasm faylini tanlang</span>
+            <input type="file" id="sellImageFile" accept="image/*" class="file-hidden-input" onchange="app.handleImageUpload(event, 'sellImageFileName')">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sellDescription">Kitob haqida qisqacha tavsif:</label>
+          <textarea id="sellDescription" class="form-input" rows="3" placeholder="Muqovasi qattiq, 380 sahifa, toza saqlangan..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-glow">
+          <i class="fa-solid fa-check"></i> Sotuvga Joylashtirish
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. KITOB ALMASHISH MODALI (E'LON JOYLASHTIRISH) -->
+  <div class="modal-overlay" id="exchangeModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="app.closeExchangeModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-header">
+        <div class="modal-header-icon bg-amber-subtle">
+          <i class="fa-solid fa-arrow-right-arrow-left text-amber"></i>
+        </div>
+        <div>
+          <h3>Kitob Almashish E'loni Joylash</h3>
+          <p class="modal-sub">Mavjud kitobingiz va uning evaziga qidirayotgan kitobingizni kiriting</p>
+        </div>
+      </div>
+      <form id="exchangeForm" onsubmit="app.handleExchangeSubmit(event)">
+        <div class="form-group">
+          <label for="exHaveTitle">Sizda bor kitob nomi: *</label>
+          <input type="text" id="exHaveTitle" class="form-input" placeholder="Masalan: Shaytanat 1-4 jild" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="exHaveAuthor">Ushbu kitob muallifi: *</label>
+            <input type="text" id="exHaveAuthor" class="form-input" placeholder="Tohir Malik" required>
+          </div>
+          <div class="form-group">
+            <label for="exCondition">Holati: *</label>
+            <select id="exCondition" class="form-input" required>
+              <option value="A'lo">A'lo (Yangi kabi)</option>
+              <option value="Yaxshi">Yaxshi</option>
+              <option value="O'rtacha">O'rtacha</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exWantTitle">Evaziga qaysi kitob yoki janrni xohlaysiz? *</label>
+          <input type="text" id="exWantTitle" class="form-input" placeholder="Masalan: Graf Monte-Kristo yoki Dasturlashga oid kitob" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="exCity">Shahar / Manzil: *</label>
+            <select id="exCity" class="form-input" required>
+              <option value="Toshkent">Toshkent shahri</option>
+              <option value="Samarqand">Samarqand</option>
+              <option value="Buxoro">Buxoro</option>
+              <option value="Farg'ona">Farg'ona</option>
+              <option value="Andijon">Andijon</option>
+              <option value="Namangan">Namangan</option>
+              <option value="Boshqa">Boshqa viloyat</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exPhone">Bog'lanish uchun telefon / Telegram: *</label>
+            <input type="text" id="exPhone" class="form-input" placeholder="+998 93 000 00 00 yoki @username" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exNote">Qo'shimcha izoh / uchrashuv joyi:</label>
+          <textarea id="exNote" class="form-input" rows="2" placeholder="Masalan: Metro bekatlarida yoki pochta orqali almashish mumkin..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-amber btn-block btn-glow">
+          <i class="fa-solid fa-paper-plane"></i> E'lonni Chiqarish
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. ALMASHISH TAKLIFI YUBORISH MODALI -->
+  <div class="modal-overlay" id="offerModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="app.closeOfferModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-header">
+        <div class="modal-header-icon bg-amber-subtle">
+          <i class="fa-solid fa-comments text-amber"></i>
+        </div>
+        <div>
+          <h3>Almashish Taklifini Yuborish</h3>
+          <p class="modal-sub">E'lon egasiga o'z taklifingizni to'g'ridan-to'g'ri yetkazing</p>
+        </div>
+      </div>
+      <div class="offer-target-info" id="offerTargetInfo">
+        <!-- script orqali ma'lumot joylanadi -->
+      </div>
+      <form id="offerForm" onsubmit="app.handleOfferSubmit(event)">
+        <div class="form-group">
+          <label for="offerBookName">Siz ushbu kitob evaziga nimani taklif qilasiz? *</label>
+          <input type="text" id="offerBookName" class="form-input" placeholder="Kitobingiz nomi va muallifi" required>
+        </div>
+        <div class="form-group">
+          <label for="offerContact">Sizning aloqa ma'lumotingiz (Tel / Telegram): *</label>
+          <input type="text" id="offerContact" class="form-input" placeholder="+998 90 ... yoki @username" required>
+        </div>
+        <div class="form-group">
+          <label for="offerMessage">E'lon egasiga xabaringiz:</label>
+          <textarea id="offerMessage" class="form-input" rows="3" placeholder="Salom, menda siz qidirgan kitob bor, qayerda uchrashsak bo'ladi?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-amber btn-block btn-glow">
+          <i class="fa-solid fa-paper-plane"></i> Taklifni Jo'natish
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. SAVATCHA (CART) VA BUYURTMA RASMIYLASHTIRISH MODALI -->
+  <div class="modal-overlay" id="cartModal">
+    <div class="modal-card cart-modal-card">
+      <button class="modal-close-btn" onclick="app.closeCartModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-header">
+        <div class="modal-header-icon bg-indigo-subtle">
+          <i class="fa-solid fa-bag-shopping text-indigo"></i>
+        </div>
+        <div>
+          <h3>Xaridlar Savatchasi</h3>
+          <p class="modal-sub">Tanlangan kitoblar va buyurtmani rasmiylashtirish</p>
+        </div>
+      </div>
+
+      <div id="cartEmptyState" class="cart-empty hidden">
+        <div class="empty-icon-wrap">
+          <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+        <p>Savatchangiz hozircha bo'sh. Do'kondan sara kitoblarni tanlang!</p>
+        <button class="btn btn-primary-sm mt-3" onclick="app.closeCartModal(); app.navigate('shop');">
+          <i class="fa-solid fa-store"></i> Kitoblar Do'koniga O'tish
+        </button>
+      </div>
+
+      <div id="cartContentArea">
+        <div class="cart-items-list" id="cartItemsList">
+          <!-- Dinamik savat elementlari script.js orqali generatsiya qilinadi -->
+        </div>
+
+        <div class="cart-summary-box">
+          <div class="summary-line">
+            <span>Mahsulotlar soni:</span>
+            <strong id="cartSummaryCount">0 ta</strong>
+          </div>
+          <div class="summary-line">
+            <span>Yetkazib berish (O'zbekiston bo'ylab):</span>
+            <strong id="cartDeliveryPrice">20 000 so'm</strong>
+          </div>
+          <div class="summary-free-promo" id="cartFreePromoBadge">
+            <i class="fa-solid fa-truck-fast"></i> 120 000 so'mdan oshsa yetkazib berish <strong>BEPUL!</strong>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-line total-line">
+            <span>Jami to'lov miqdori:</span>
+            <strong id="cartSummaryTotal">0 so'm</strong>
+          </div>
+        </div>
+
+        <!-- Buyurtmachi ma'lumotlari -->
+        <form id="checkoutForm" onsubmit="app.handleCheckoutSubmit(event)">
+          <h4 class="checkout-title"><i class="fa-solid fa-truck text-indigo"></i> Yetkazib berish ma'lumotlari</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="orderName">Ism-familiyangiz: *</label>
+              <input type="text" id="orderName" class="form-input" placeholder="Ali Valiyev" required>
+            </div>
+            <div class="form-group">
+              <label for="orderPhone">Telefon raqamingiz: *</label>
+              <input type="tel" id="orderPhone" class="form-input" placeholder="+998 90 123 45 67" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="orderCity">Viloyat / Shahar: *</label>
+              <select id="orderCity" class="form-input" required>
+                <option value="Toshkent">Toshkent shahri</option>
+                <option value="Samarqand">Samarqand viloyati</option>
+                <option value="Buxoro">Buxoro viloyati</option>
+                <option value="Farg'ona">Farg'ona viloyati</option>
+                <option value="Andijon">Andijon viloyati</option>
+                <option value="Namangan">Namangan viloyati</option>
+                <option value="Qashqadaryo">Qashqadaryo viloyati</option>
+                <option value="Surxondaryo">Surxondaryo viloyati</option>
+                <option value="Xorazm">Xorazm viloyati</option>
+                <option value="Navoiy">Navoiy viloyati</option>
+                <option value="Jizzax">Jizzax viloyati</option>
+                <option value="Sirdaryo">Sirdaryo viloyati</option>
+                <option value="Qoraqalpog'iston">Qoraqalpog'iston</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="orderPayment">To'lov usuli: *</label>
+              <select id="orderPayment" class="form-input" required>
+                <option value="cash">Qabul qilganda naqd pul</option>
+                <option value="payme">Payme / Click (onlayn / qabulda)</option>
+                <option value="card">Bank kartasi orqali (Terminal)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="orderAddress">Aniq yetkazish manzili (Tuman, ko'cha, uy, xonadon): *</label>
+            <input type="text" id="orderAddress" class="form-input" placeholder="Chilonzor 9-mavze, 14-uy, 28-xonadon" required>
+          </div>
+          <div class="form-group">
+            <label for="orderNotes">Kuryer uchun izoh (ixtiyoriy):</label>
+            <input type="text" id="orderNotes" class="form-input" placeholder="Masalan: Uyda soat 18:00 dan keyin bo'laman...">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-glow">
+            <i class="fa-solid fa-check-circle"></i> Xaridni Tasdiqlash va Buyurtma Berish
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. KITOBNING BATAFSIL MA'LUMOTI MODALI -->
+  <div class="modal-overlay" id="bookDetailModal">
+    <div class="modal-card book-detail-card">
+      <button class="modal-close-btn" onclick="app.closeBookDetailModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="book-detail-grid" id="bookDetailContent">
+        <!-- Dinamik kontent script.js orqali generatsiya qilinadi -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. ADMIN: KITOBNI TAHRIRLASH MODALI -->
+  <div class="modal-overlay" id="adminEditBookModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="app.closeAdminEditBookModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-header">
+        <div class="modal-header-icon bg-indigo-subtle">
+          <i class="fa-solid fa-pen-to-square text-indigo"></i>
+        </div>
+        <div>
+          <h3>Kitob Ma'lumotlarini Tahrirlash</h3>
+          <p class="modal-sub">Do'kondagi kitob narxi, holati va tavsifini yangilang</p>
+        </div>
+      </div>
+      <form id="adminEditBookForm" onsubmit="app.handleAdminEditBookSubmit(event)">
+        <input type="hidden" id="editBookId">
+        <div class="form-group">
+          <label for="editBookTitle">Kitob Nomi: *</label>
+          <input type="text" id="editBookTitle" class="form-input" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editBookAuthor">Muallif: *</label>
+            <input type="text" id="editBookAuthor" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="editBookGenre">Janr: *</label>
+            <select id="editBookGenre" class="form-input" required>
+              <option value="Badiiy">Badiiy adabiyot</option>
+              <option value="Biznes & Rivojlanish">Biznes & Rivojlanish</option>
+              <option value="Psixologiya">Psixologiya</option>
+              <option value="Tarixiy">Tarixiy</option>
+              <option value="Diniy-ma'rifiy">Diniy-ma'rifiy</option>
+              <option value="IT & Dasturlash">IT & Dasturlash</option>
+              <option value="Bolalar uchun">Bolalar uchun</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editBookPrice">Narxi (so'm): *</label>
+            <input type="number" id="editBookPrice" class="form-input" min="0" step="1000" required>
+          </div>
+          <div class="form-group">
+            <label for="editBookCondition">Holati: *</label>
+            <select id="editBookCondition" class="form-input" required>
+              <option value="Yangi">Yangi</option>
+              <option value="A'lo">A'lo</option>
+              <option value="Yaxshi">Yaxshi</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editBookCity">Shahar / Viloyat: *</label>
+            <input type="text" id="editBookCity" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="editBookImageUrl">Rasm URL manzili:</label>
+            <input type="url" id="editBookImageUrl" class="form-input">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="editBookDescription">Tavsif:</label>
+          <textarea id="editBookDescription" class="form-input" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-glow">
+          <i class="fa-solid fa-floppy-disk"></i> O'zgarishlarni Saqlash
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 8. RASMIY XARID KVITANSIYASI / CHEK MODALI -->
+  <div class="modal-overlay" id="orderReceiptModal">
+    <div class="modal-card receipt-modal-card">
+      <button class="modal-close-btn" onclick="app.closeOrderReceiptModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="orderReceiptContent">
+        <!-- Dinamik chek kontenti script.js orqali generatsiya qilinadi -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST XABARLAR (NOTIFICATIONS) ==================== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript fayli -->
+  <script src="script.js"></script>
+</body>
+</html>
